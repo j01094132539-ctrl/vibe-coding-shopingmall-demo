@@ -23,6 +23,14 @@ const PORT = process.env.PORT || 5000;
 
 const { uri: MONGO_URI, source: mongoSource } = resolveMongoUri();
 
+// Heroku 프로덕션 — `JWT_SECRET` 없으면 로그인 500 (`utils/jwt.js`)
+if (process.env.NODE_ENV === 'production' && !String(process.env.JWT_SECRET || '').trim()) {
+  console.error(
+    'FATAL: JWT_SECRET이 없습니다. Heroku Config Vars에 JWT_SECRET을 설정하고 재배포하세요.'
+  );
+  process.exit(1);
+}
+
 // Vercel(프론트) → Heroku(API) — `CORS_ORIGINS`·`CORS_ALLOW_VERCEL` (`middlewares/cors.js`)
 app.use(createCorsMiddleware());
 app.use(express.json());

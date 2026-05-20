@@ -12,7 +12,12 @@ function getJwtSecret() {
     return fromEnv.trim();
   }
   if (process.env.NODE_ENV === 'production') {
-    throw Object.assign(new Error('JWT_SECRET이 설정되지 않았습니다.'), { statusCode: 500 });
+    throw Object.assign(
+      new Error(
+        'JWT_SECRET이 설정되지 않았습니다. Heroku → Settings → Config Vars에 JWT_SECRET을 추가한 뒤 앱을 재시작하세요. (Vercel 환경변수 아님)'
+      ),
+      { statusCode: 500 }
+    );
   }
   return DEFAULT_DEV_SECRET;
 }

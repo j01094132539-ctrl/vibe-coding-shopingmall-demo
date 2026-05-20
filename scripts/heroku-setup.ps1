@@ -30,6 +30,9 @@ if ($Monorepo) {
 }
 
 Write-Host ""
+Write-Host "필수 Config Vars (Heroku 대시보드): JWT_SECRET, MONGODB_ATLAS_URL, PORTONE_IMP_KEY, PORTONE_IMP_SECRET"
+Write-Host "JWT_SECRET은 Server/.env 값을 복사하거나 새 랜덤 문자열 사용 (Vercel에 넣지 않음)"
+Write-Host ""
 Write-Host "완료. 루트에서: git push heroku main"
 Write-Host ""
 heroku buildpacks -a $AppName
