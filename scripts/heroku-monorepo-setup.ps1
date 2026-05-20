@@ -1,4 +1,4 @@
-# Heroku 모노레포 배포 설정 — 루트 push 시 Server/만 빌드 (lstoll/heroku-buildpack-monorepo)
+# [레거시] monorepo buildpack 전용 — APP_BASE Config Var 필수. 권장: .\heroku-setup.ps1 (루트 package.json)
 # 사용: .\scripts\heroku-monorepo-setup.ps1 -AppName your-heroku-app-name
 
 param(

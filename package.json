@@ -1,0 +1,14 @@
+{
+  "name": "shopping-mall-demo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Heroku 루트 배포 — Server/ 의존성 설치 후 API 실행 (APP_BASE Config Var 불필요)",
+  "engines": {
+    "node": "20.x",
+    "npm": "10.x"
+  },
+  "scripts": {
+    "start": "npm start --prefix Server",
+    "heroku-postbuild": "npm ci --prefix Server --omit=dev"
+  }
+}
