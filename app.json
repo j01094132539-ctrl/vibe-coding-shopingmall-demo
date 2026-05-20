@@ -1,0 +1,20 @@
+{
+  "name": "shopping-mall-server",
+  "description": "쇼핑몰 API (Express) — 모노레포 루트에서 Heroku 배포 시 Server/만 빌드",
+  "repository": "https://github.com/j01094132539-ctrl/vibe-coding-shopingmall-demo",
+  "buildpacks": [
+    {
+      "url": "https://github.com/lstoll/heroku-buildpack-monorepo"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "APP_BASE": {
+      "description": "Heroku monorepo buildpack — Node 앱 하위 폴더",
+      "value": "Server",
+      "required": true
+    }
+  }
+}
