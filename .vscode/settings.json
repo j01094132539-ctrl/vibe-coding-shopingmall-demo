@@ -1,0 +1,46 @@
+{
+  "editor.tokenColorCustomizations": {
+    "comments": "#5ef38c",
+    "textMateRules": [
+      {
+        "name": "Comments (line, block, JSDoc)",
+        "scope": [
+          "comment",
+          "comment.line",
+          "comment.block",
+          "comment.block.documentation",
+          "punctuation.definition.comment",
+          "comment.line.double-slash",
+          "comment.line.double-slash.js",
+          "comment.line.double-slash.jsx",
+          "comment.line.double-slash.ts",
+          "comment.line.double-slash.tsx",
+          "comment.line.triple-slash.directive",
+          "comment.block.js",
+          "comment.block.jsx",
+          "comment.block.ts",
+          "comment.block.tsx",
+          "comment.block.documentation.js",
+          "comment.block.documentation.jsx",
+          "comment.block.documentation.ts",
+          "comment.block.documentation.tsx"
+        ],
+        "settings": {
+          "foreground": "#5ef38c"
+        }
+      },
+      {
+        "name": "JSDoc / TSDoc tags inside documentation comments",
+        "scope": [
+          "storage.type.class.jsdoc",
+          "punctuation.definition.block.tag.jsdoc",
+          "entity.name.type.instance.jsdoc",
+          "variable.other.jsdoc"
+        ],
+        "settings": {
+          "foreground": "#5ef38c"
+        }
+      }
+    ]
+  }
+}

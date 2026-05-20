@@ -1,0 +1,288 @@
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+}
+
+.login__main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem 2.5rem;
+}
+
+.login__card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login__back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  color: #5f6368;
+  text-decoration: none;
+}
+
+.login__back:hover {
+  color: #202124;
+  text-decoration: underline;
+}
+
+.login__checking {
+  margin: 0 0 0.5rem;
+  font-size: 0.9375rem;
+  color: #5f6368;
+  line-height: 1.5;
+}
+
+.login__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #202124;
+}
+
+.login__sub {
+  margin: 0 0 1.75rem;
+  font-size: 0.9375rem;
+  color: #5f6368;
+  line-height: 1.5;
+}
+
+.login__sub a {
+  color: #1a73e8;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.login__sub a:hover {
+  text-decoration: underline;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.login__input {
+  width: 100%;
+  padding: 0.8125rem 0.875rem;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 0.9375rem;
+  color: #202124;
+  background: #fff;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.login__input::placeholder {
+  color: #80868b;
+}
+
+.login__input:hover {
+  border-color: #bdc1c6;
+}
+
+.login__input:focus {
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 1px #1a73e8;
+}
+
+.login__row {
+  display: flex;
+  align-items: center;
+  margin: 0.125rem 0 0.25rem;
+}
+
+.login__remember {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #3c4043;
+  cursor: pointer;
+  user-select: none;
+}
+
+.login__remember input {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0;
+  accent-color: #1a73e8;
+  cursor: pointer;
+}
+
+.login__submit {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #fff;
+  background: #1a73e8;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.login__submit:hover:not(:disabled) {
+  background: #1557b0;
+}
+
+.login__submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.login__google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  width: 100%;
+  margin-top: 0.125rem;
+  padding: 0.6875rem 1rem;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #3c4043;
+  background: #fff;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.login__google:hover {
+  background: #f8f9fa;
+  border-color: #bdc1c6;
+}
+
+.login__google svg {
+  flex-shrink: 0;
+}
+
+.login__footer {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.login__forgot {
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1a73e8;
+  cursor: pointer;
+}
+
+.login__forgot:hover {
+  text-decoration: underline;
+}
+
+.login__error {
+  margin: 0;
+  padding: 0.625rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  color: #c5221f;
+  background: #fce8e6;
+  line-height: 1.45;
+}
+
+@media (prefers-color-scheme: dark) {
+  .login {
+    background: #202124;
+  }
+
+  .login__title {
+    color: #e8eaed;
+  }
+
+  .login__sub,
+  .login__back {
+    color: #9aa0a6;
+  }
+
+  .login__back:hover {
+    color: #e8eaed;
+  }
+
+  .login__checking {
+    color: #bdc1c6;
+  }
+
+  .login__input {
+    background: #303134;
+    border-color: #5f6368;
+    color: #e8eaed;
+  }
+
+  .login__input::placeholder {
+    color: #9aa0a6;
+  }
+
+  .login__input:hover {
+    border-color: #80868b;
+  }
+
+  .login__remember {
+    color: #bdc1c6;
+  }
+
+  .login__google {
+    background: #303134;
+    border-color: #5f6368;
+    color: #e8eaed;
+  }
+
+  .login__google:hover {
+    background: #3c4043;
+  }
+
+  .login__error {
+    background: rgba(242, 139, 130, 0.15);
+    color: #f28b82;
+  }
+}

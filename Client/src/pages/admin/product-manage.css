@@ -1,0 +1,399 @@
+/* 상품 관리 조회 UI — `ProductManagePage.jsx` (탭·검색·필터·테이블) */
+.pm-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 0.15rem;
+}
+
+.pm-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.pm-top__left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.pm-back {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  color: #334155;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.pm-back:hover {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.pm-title {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.pm-new-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+  padding: 0.65rem 1.1rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #fff;
+  background: #111827;
+  border: 1px solid #111827;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.pm-new-btn:hover {
+  background: #1f2937;
+  border-color: #1f2937;
+}
+
+.pm-new-btn--inline {
+  margin-top: 0.5rem;
+}
+
+/* 탭 — 상품 목록 / 상품 등록 */
+.pm-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 0;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-bottom: none;
+  background: #f1f5f9;
+}
+
+.pm-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #64748b;
+  text-decoration: none;
+  background: #f1f5f9;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.pm-tab:hover {
+  color: #334155;
+  background: #e2e8f0;
+}
+
+.pm-tab--active {
+  color: #0f172a;
+  background: #fff;
+  border-bottom-color: #0f172a;
+}
+
+/* 검색·필터 바 */
+.pm-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1rem 1.1rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-top: 1px solid #e5e7eb;
+}
+
+.pm-search {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fafafa;
+}
+
+.pm-search__icon {
+  display: flex;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.pm-search__input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.92rem;
+  color: #0f172a;
+}
+
+.pm-search__input::placeholder {
+  color: #94a3b8;
+}
+
+.pm-search__input:focus {
+  outline: none;
+}
+
+.pm-filter-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.pm-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+}
+
+.pm-filter-btn:hover {
+  background: #f8fafc;
+}
+
+.pm-filter-btn--open {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+
+.pm-filter-pop {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.35rem);
+  z-index: 10;
+  min-width: 200px;
+  padding: 0.85rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+}
+
+.pm-filter-pop__label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.pm-filter-pop__select {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  font: inherit;
+  font-size: 0.88rem;
+}
+
+.pm-banner-error {
+  margin: 0 0 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.pm-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.1rem 1.25rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.pm-page-btn {
+  padding: 0.45rem 0.95rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+}
+
+.pm-page-btn:hover:not(:disabled) {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.pm-page-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.pm-pagination__info {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.pm-pagination__single {
+  margin: 0;
+  padding: 0.85rem 1.1rem 1.15rem;
+  text-align: center;
+  font-size: 0.82rem;
+  color: #94a3b8;
+  border-top: 1px solid #f1f5f9;
+}
+
+
+.pm-status {
+  margin: 0;
+  padding: 2rem 1.25rem;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.92rem;
+}
+
+.pm-empty {
+  text-align: center;
+  padding: 2.5rem 1.25rem;
+  color: #64748b;
+}
+
+.pm-empty p {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.pm-table-scroll {
+  overflow-x: auto;
+}
+
+.pm-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.pm-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  border-bottom: 1px solid #e8eaed;
+  background: #fff;
+}
+
+.pm-table td {
+  padding: 0.85rem 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+}
+
+.pm-table tbody tr:hover {
+  background: #fafbfc;
+}
+
+.pm-thumb {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f1f5f9;
+  display: grid;
+  place-items: center;
+}
+
+.pm-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pm-thumb__ph {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.pm-cell-name {
+  font-weight: 600;
+  color: #0f172a;
+  max-width: 280px;
+}
+
+.pm-cat {
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.pm-cell-price {
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.pm-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.pm-icon-btn {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #64748b;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.pm-icon-btn:hover {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: #d1d5db;
+}
+
+.pm-icon-btn--del:hover {
+  color: #b91c1c;
+  border-color: #fecaca;
+  background: #fef2f2;
+}

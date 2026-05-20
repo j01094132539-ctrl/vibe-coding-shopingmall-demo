@@ -1,0 +1,380 @@
+.admin-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f4f5f7;
+}
+
+.admin-page__main {
+  flex: 1;
+  padding: 1.75rem 1.25rem 3rem;
+}
+
+.admin-page__checking {
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+/* 대시보드 본문 */
+.admin-dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.admin-dashboard__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.admin-dashboard__manage-products {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0f172a;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.admin-dashboard__manage-products:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.admin-dashboard__title {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.5rem, 3vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+.admin-dashboard__sub {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+/* 통계 카드 */
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-stat-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1.15rem 1.2rem;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #e8eaed;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.admin-stat-card__label {
+  margin: 0 0 0.35rem;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.admin-stat-card__value {
+  margin: 0 0 0.25rem;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.admin-stat-card__delta {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.admin-stat-card__icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.admin-stat-card--blue .admin-stat-card__icon {
+  color: #2563eb;
+  background: #eff6ff;
+}
+
+.admin-stat-card--green .admin-stat-card__icon {
+  color: #16a34a;
+  background: #f0fdf4;
+}
+
+.admin-stat-card--purple .admin-stat-card__icon {
+  color: #7c3aed;
+  background: #f5f3ff;
+}
+
+.admin-stat-card--orange .admin-stat-card__icon {
+  color: #ea580c;
+  background: #fff7ed;
+}
+
+/* 하단 2열 */
+.admin-panels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.admin-panel__title {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* 빠른 작업 */
+.admin-quick {
+  padding: 1.25rem 1.2rem;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #e8eaed;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.admin-quick__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.admin-quick__btn {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #334155;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.admin-quick__btn:hover {
+  background: #f8fafc;
+  border-color: #d1d5db;
+}
+
+.admin-quick__btn--primary {
+  color: #fff;
+  background: #111827;
+  border-color: #111827;
+}
+
+.admin-quick__btn--primary:hover {
+  background: #1f2937;
+  border-color: #1f2937;
+}
+
+/* 현재 라우트와 일치하는 빠른 작업 링크 강조 — `AdminQuickActions.jsx` */
+.admin-quick__btn--active:not(.admin-quick__btn--primary) {
+  border-color: #93c5fd;
+  background: #eff6ff;
+  color: #1e40af;
+}
+
+.admin-quick__btn--primary.admin-quick__btn--active {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #3b82f6;
+}
+
+.admin-quick__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* 최근 주문 */
+.admin-orders {
+  padding: 1.25rem 1.2rem;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #e8eaed;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.admin-orders__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.admin-orders__head .admin-panel__title {
+  margin-bottom: 0;
+}
+
+.admin-orders__hint {
+  margin: 0 0 0.65rem;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.admin-orders__hint--warn {
+  color: #b45309;
+}
+
+.admin-orders__all {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.admin-orders__all:hover {
+  color: #0f172a;
+}
+
+.admin-orders__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+/* 최근 주문 행 — `/admin/orders/:id` 상세로 이동 */
+.admin-order-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+.admin-order-card-link:hover .admin-order-card {
+  border-color: #e2e8f0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.admin-order-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #eef0f3;
+  background: #fafbfc;
+}
+
+.admin-order-card__id {
+  margin: 0 0 0.2rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.admin-order-card__customer {
+  margin: 0 0 0.15rem;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.admin-order-card__date {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.admin-order-card__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.admin-order-badge {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.admin-order-badge--processing {
+  color: #a16207;
+  background: #fef9c3;
+}
+
+.admin-order-badge--shipping {
+  color: #1d4ed8;
+  background: #dbeafe;
+}
+
+.admin-order-badge--delivered {
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.admin-order-badge--cancelled {
+  color: #b91c1c;
+  background: #fee2e2;
+}
+
+.admin-order-card__amount {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+@media (min-width: 640px) {
+  .admin-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .admin-panels {
+    grid-template-columns: minmax(240px, 1fr) minmax(0, 2fr);
+    align-items: start;
+  }
+}

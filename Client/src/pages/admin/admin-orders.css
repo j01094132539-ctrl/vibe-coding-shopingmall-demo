@@ -1,0 +1,488 @@
+/* 관리자 주문 관리 `/admin/orders` — 캡처 UI(검색·필터·탭·카드·액션) */
+
+.admin-om {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.admin-om--detail {
+  max-width: 720px;
+}
+
+.admin-om__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.admin-om__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  color: #0f172a;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.admin-om__back:hover {
+  background: #f8fafc;
+}
+
+.admin-om__title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+.admin-om__search-row {
+  display: flex;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+  align-items: stretch;
+}
+
+.admin-om__search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.85rem;
+  min-height: 2.75rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.admin-om__search-icon {
+  flex-shrink: 0;
+  color: #94a3b8;
+}
+
+.admin-om__search-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  color: #0f172a;
+  outline: none;
+}
+
+.admin-om__search-input::placeholder {
+  color: #94a3b8;
+}
+
+.admin-om__filter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0 1rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.admin-om__filter-btn:hover {
+  background: #f8fafc;
+}
+
+.admin-om__filter-hint {
+  margin: 0 0 1rem;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.82rem;
+  color: #64748b;
+  background: #f1f5f9;
+  border-radius: 8px;
+}
+
+.admin-om__tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.2rem;
+  margin: 0 0 1.25rem;
+  padding: 0.2rem;
+  background: #e2e8f0;
+  border-radius: 10px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+/* 진행 상태 탭이 8개라 한 줄에서 가로 스크롤로 전부 노출 */
+.admin-om__tabs--scroll {
+  align-items: stretch;
+}
+
+.admin-om__tab {
+  flex: 0 0 auto;
+  padding: 0.5rem 0.45rem;
+  border: none;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  background: transparent;
+  cursor: pointer;
+  line-height: 1.25;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.admin-om__tab-count {
+  font-weight: 700;
+  opacity: 0.88;
+}
+
+.admin-om__tab--active {
+  background: #fff;
+  color: #0f172a;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+.admin-om__tab--active .admin-om__tab-count {
+  color: #64748b;
+}
+
+/* 취소 주문 카드 — `cancelledAt`·`cancelReason` 표시 (order.model 스키마와 대응) */
+.admin-om__cancel-panel {
+  margin: 0 0 1rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid #fecaca;
+  background: #fff1f2;
+}
+
+.admin-om__cancel-panel-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #b91c1c;
+}
+
+.admin-om__cancel-dl {
+  margin: 0;
+}
+
+.admin-om__cancel-dl-row {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 0.35rem 0.65rem;
+  align-items: baseline;
+  font-size: 0.84rem;
+  color: #334155;
+}
+
+.admin-om__cancel-dl-row + .admin-om__cancel-dl-row {
+  margin-top: 0.35rem;
+}
+
+.admin-om__cancel-dl-row dt {
+  margin: 0;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.admin-om__cancel-dl-row dd {
+  margin: 0;
+  word-break: break-word;
+}
+
+.admin-om__hint,
+.admin-om__error {
+  margin: 0;
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.admin-om__error {
+  color: #b91c1c;
+  background: #fef2f2;
+  border-radius: 10px;
+  border: 1px solid #fecaca;
+}
+
+.admin-om__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-om__card {
+  padding: 1.15rem 1.2rem 1rem;
+  background: #fff;
+  border: 1px solid #e8eaed;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.admin-om__card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.admin-om__card-head-left {
+  display: flex;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.admin-om__clock {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: #94a3b8;
+}
+
+.admin-om__order-no {
+  margin: 0 0 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.admin-om__customer-date {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.admin-om__card-head-right {
+  flex-shrink: 0;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+}
+
+.admin-om__badge {
+  display: inline-block;
+  padding: 0.22rem 0.55rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.admin-om__badge--pending {
+  color: #9a3412;
+  background: #ffedd5;
+}
+
+.admin-om__badge--processing {
+  color: #854d0e;
+  background: #fef9c3;
+}
+
+.admin-om__badge--shipping {
+  color: #1e40af;
+  background: #dbeafe;
+}
+
+.admin-om__badge--done {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.admin-om__badge--cancelled {
+  color: #64748b;
+  background: #f1f5f9;
+}
+
+.admin-om__card-total {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.admin-om__detail-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.15rem;
+  padding: 0.35rem 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #475569;
+  text-decoration: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.admin-om__detail-link:hover {
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.admin-om__cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 720px) {
+  .admin-om__cols {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+.admin-om__col-title {
+  margin: 0 0 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.admin-om__col-line {
+  margin: 0 0 0.25rem;
+  font-size: 0.86rem;
+  color: #334155;
+  line-height: 1.45;
+}
+
+.admin-om__col-line--address {
+  word-break: break-word;
+}
+
+.admin-om__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.45rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* 카드 하단 진행 상태 — 목록에서 `PUT /api/orders/:id`와 연동되는 native select */
+.admin-om__card-status-label {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.admin-om__card-select-wrap {
+  width: 100%;
+}
+
+.admin-om__status-select {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #0f172a;
+  cursor: pointer;
+  appearance: auto;
+}
+
+.admin-om__status-select:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.admin-om__status-select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.admin-om__btn {
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+
+.admin-om__btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.admin-om__btn--primary {
+  color: #fff;
+  background: #2563eb;
+}
+
+.admin-om__btn--primary:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.admin-om__btn--ghost {
+  color: #0f172a;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+}
+
+.admin-om__btn--ghost:hover:not(:disabled) {
+  background: #f8fafc;
+}
+
+.admin-om__detail-card {
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid #e8eaed;
+  border-radius: 14px;
+}
+
+.admin-om__detail-row {
+  margin: 0 0 0.65rem;
+  font-size: 0.9rem;
+  color: #334155;
+}
+
+.admin-om__detail-sub {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.admin-om__detail-items {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.88rem;
+  color: #475569;
+}

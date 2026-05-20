@@ -1,0 +1,253 @@
+/* 공통 상단 네비 — `AppNavbar.jsx` (HIVER 스타일 참고) */
+.app-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #000;
+  color: #fff;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.app-navbar__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.app-navbar__brand {
+  flex-shrink: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  color: #fff;
+}
+
+.app-navbar__search {
+  flex: 1;
+  min-width: 0;
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.app-navbar__search-icon {
+  flex-shrink: 0;
+  color: #9ca3af;
+  display: flex;
+}
+
+.app-navbar__search-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.82rem;
+  color: #111;
+}
+
+.app-navbar__search-input::placeholder {
+  color: #9ca3af;
+}
+
+.app-navbar__search-input:focus {
+  outline: none;
+}
+
+.app-navbar__actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem 0.85rem;
+}
+
+.app-navbar__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.25rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.app-navbar__action:hover {
+  opacity: 0.85;
+}
+
+.app-navbar__action-icon {
+  display: flex;
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.app-navbar__action-label {
+  display: none;
+}
+
+.app-navbar__cart-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.app-navbar__cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  padding: 0 0.2rem;
+  display: grid;
+  place-items: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+  background: #f97316;
+  border-radius: 999px;
+  border: 2px solid #000;
+}
+
+.app-navbar__admin {
+  padding: 0.35rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  background: #1e3a8a;
+  text-decoration: none;
+}
+
+.app-navbar__category {
+  position: relative;
+}
+
+.app-navbar__dropdown--category {
+  min-width: 10.5rem;
+}
+
+.app-navbar__user {
+  position: relative;
+}
+
+.app-navbar__welcome-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #444;
+  border-radius: 4px;
+  font: inherit;
+  font-size: 0.78rem;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+}
+
+.app-navbar__welcome-btn:hover {
+  border-color: #666;
+}
+
+.app-navbar__welcome-name {
+  font-weight: 700;
+}
+
+.app-navbar__dropdown {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  right: 0;
+  min-width: 9.5rem;
+  padding: 0.35rem 0;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.app-navbar__dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.85rem;
+  text-align: left;
+  color: #111;
+  cursor: pointer;
+}
+
+.app-navbar__dropdown-item:hover {
+  background: #f3f4f6;
+}
+
+.app-navbar__guest {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.45rem;
+}
+
+.app-navbar__login {
+  flex-shrink: 0;
+  padding: 0.4rem 0.85rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #000;
+  background: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.app-navbar__login:hover {
+  background: #f3f4f6;
+}
+
+.app-navbar__signup {
+  flex-shrink: 0;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: transparent;
+  border: 1px solid #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.app-navbar__signup:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+@media (min-width: 768px) {
+  .app-navbar__action-label {
+    display: inline;
+  }
+
+  .app-navbar__inner {
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-navbar__search {
+    display: none;
+  }
+}

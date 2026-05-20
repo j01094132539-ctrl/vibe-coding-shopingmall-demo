@@ -1,0 +1,1187 @@
+/* 결제(체크아웃) — 캡처 UI: 스텝·배송 폼·주문 요약 2열 */
+.checkout-page {
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+.checkout-page__main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.25rem 3rem;
+}
+
+/* 상단: 뒤로가기 + 제목 */
+.checkout-page__top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  margin-bottom: 1.25rem;
+  padding-top: 0.5rem;
+}
+
+.checkout-page__back {
+  position: absolute;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #111;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.checkout-page__back:hover {
+  background: #f3f4f6;
+}
+
+.checkout-page__title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #111;
+}
+
+/* 진행 단계 — Shipping / Payment / Review */
+.checkout-page__steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  max-width: 520px;
+  margin: 0 auto 2rem;
+  padding: 0 0.5rem;
+}
+
+.checkout-page__step {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  position: relative;
+}
+
+.checkout-page__step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  left: calc(50% + 1.1rem);
+  width: calc(100% - 2.2rem);
+  height: 2px;
+  background: #e5e7eb;
+  z-index: 0;
+}
+
+.checkout-page__step--done:not(:last-child)::after {
+  background: #111;
+}
+
+.checkout-page__step-badge {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #9ca3af;
+  background: #fff;
+  border: 2px solid #e5e7eb;
+}
+
+.checkout-page__step--active .checkout-page__step-badge {
+  color: #fff;
+  background: #111;
+  border-color: #111;
+}
+
+.checkout-page__step--done .checkout-page__step-badge {
+  color: #111;
+  border-color: #111;
+}
+
+.checkout-page__step-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.checkout-page__step--active .checkout-page__step-label,
+.checkout-page__step--done .checkout-page__step-label {
+  color: #111;
+}
+
+.checkout-page__layout {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .checkout-page__layout {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 2rem;
+  }
+}
+
+/* 왼쪽 — 배송·결제 카드 세로 배치 */
+.checkout-page__col-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.checkout-page__card-icon--payment {
+  color: #2563eb;
+}
+
+/* 결제 수단 라디오 — 캡처 UI 박스형 */
+.checkout-page__payment-options {
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.checkout-page__payment-options .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.checkout-page__payment-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.checkout-page__payment-option:hover {
+  border-color: #d1d5db;
+}
+
+.checkout-page__payment-option--selected {
+  border-color: #111;
+  box-shadow: 0 0 0 1px #111;
+}
+
+.checkout-page__payment-option input[type='radio'] {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin: 0;
+  flex-shrink: 0;
+  accent-color: #2563eb;
+  cursor: pointer;
+}
+
+.checkout-page__payment-option-label {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #111;
+}
+
+/* 배송 정보 카드 */
+.checkout-page__card {
+  padding: 1.5rem 1.35rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.checkout-page__card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.35rem;
+}
+
+.checkout-page__card-head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.checkout-page__card-icon {
+  display: flex;
+  color: #6b7280;
+}
+
+.checkout-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.checkout-page__row {
+  display: grid;
+  gap: 1rem;
+}
+
+.checkout-page__row--2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 520px) {
+  .checkout-page__row--2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.checkout-page__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.checkout-page__field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.checkout-page__input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.checkout-page__input-wrap:focus-within {
+  border-color: #111;
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.08);
+}
+
+.checkout-page__input-wrap svg {
+  flex-shrink: 0;
+  color: #9ca3af;
+}
+
+.checkout-page__input-wrap input,
+.checkout-page__input-wrap textarea {
+  flex: 1;
+  min-width: 0;
+  padding: 0.7rem 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  color: #111;
+  outline: none;
+}
+
+.checkout-page__input-wrap input::placeholder,
+.checkout-page__input-wrap textarea::placeholder {
+  color: #9ca3af;
+}
+
+.checkout-page__input-wrap--plain {
+  padding: 0;
+}
+
+.checkout-page__input-wrap--plain input {
+  padding: 0.7rem 0.75rem;
+}
+
+.checkout-page__error {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.88rem;
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+}
+
+.checkout-page__status {
+  margin: 0;
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+.checkout-page__panel {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.checkout-page__panel p {
+  margin: 0 0 1rem;
+  color: #4b5563;
+}
+
+.checkout-page__panel a {
+  color: #111;
+  font-weight: 600;
+}
+
+/* 주문 요약 */
+.checkout-page__summary {
+  padding: 1.35rem 1.25rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+@media (min-width: 900px) {
+  .checkout-page__summary {
+    position: sticky;
+    top: 5.5rem;
+  }
+}
+
+.checkout-page__summary-title {
+  margin: 0 0 1.15rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.checkout-page__items {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0 0 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.checkout-page__item {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.checkout-page__item-thumb {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.checkout-page__item-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.checkout-page__item-thumb span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 0.65rem;
+  color: #9ca3af;
+}
+
+.checkout-page__item-qty {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 4px;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #fff;
+  background: #111;
+  display: grid;
+  place-items: center;
+}
+
+.checkout-page__item-body {
+  min-width: 0;
+}
+
+.checkout-page__item-name {
+  margin: 0 0 0.2rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.35;
+}
+
+.checkout-page__item-meta {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+.checkout-page__item-price {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111;
+  white-space: nowrap;
+}
+
+.checkout-page__totals {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-bottom: 1.15rem;
+  font-size: 0.88rem;
+  color: #6b7280;
+}
+
+.checkout-page__totals-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.checkout-page__totals-row span:last-child {
+  font-weight: 600;
+  color: #111;
+}
+
+.checkout-page__totals-row--free span:last-child {
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.checkout-page__grand {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.15rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid #f3f4f6;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.checkout-page__grand strong {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.checkout-page__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+}
+
+.checkout-page__submit:hover:not(:disabled) {
+  background: #333;
+}
+
+.checkout-page__submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.checkout-page__secure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin: 0.85rem 0 0.65rem;
+  font-size: 0.72rem;
+  color: #9ca3af;
+}
+
+.checkout-page__pay-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.checkout-page__pay-badge {
+  padding: 0.2rem 0.45rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #6b7280;
+  background: #fafafa;
+}
+
+.checkout-page__legal {
+  margin: 0;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  text-align: center;
+  color: #9ca3af;
+}
+
+/* 주문 결과(성공·실패) — `/checkout/complete` */
+.checkout-result {
+  min-height: 100vh;
+}
+
+.checkout-result--success {
+  background: #f3f8f5;
+}
+
+.checkout-result--failed {
+  background: #fdf6f6;
+}
+
+.checkout-result__main {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3.5rem;
+  text-align: center;
+}
+
+.checkout-result__hero {
+  margin-bottom: 1.75rem;
+}
+
+.checkout-result__status-icon {
+  width: 4.25rem;
+  height: 4.25rem;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.checkout-result__status-icon--success {
+  background: #22c55e;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.35);
+}
+
+.checkout-result__status-icon--fail {
+  background: #ef4444;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3);
+}
+
+.checkout-result__title {
+  margin: 0 0 0.65rem;
+  font-size: clamp(1.35rem, 4vw, 1.65rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #111;
+  line-height: 1.35;
+}
+
+.checkout-result__lead {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.checkout-result__sub {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #9ca3af;
+}
+
+.checkout-result__card {
+  margin-bottom: 1.5rem;
+  padding: 1.35rem 1.25rem 1.15rem;
+  text-align: left;
+  background: #fff;
+  border: 1px solid #e8ece9;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.checkout-result__card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.15rem;
+}
+
+.checkout-result__card-icon {
+  display: flex;
+  color: #374151;
+}
+
+.checkout-result__card-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.checkout-result__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.25rem;
+  margin-bottom: 1.15rem;
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid #f0f2f1;
+}
+
+.checkout-result__meta-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+.checkout-result__meta-value {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111;
+  word-break: break-all;
+}
+
+.checkout-result__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.checkout-result__item {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.checkout-result__item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.checkout-result__item-thumb {
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f3f4f6;
+  flex-shrink: 0;
+}
+
+.checkout-result__item-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.checkout-result__item-thumb span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0.25rem;
+  font-size: 0.62rem;
+  text-align: center;
+  color: #9ca3af;
+}
+
+.checkout-result__item-body {
+  min-width: 0;
+}
+
+.checkout-result__item-name {
+  margin: 0 0 0.3rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.checkout-result__item-meta {
+  margin: 0 0 0.45rem;
+  font-size: 0.82rem;
+  color: #9ca3af;
+}
+
+.checkout-result__item-price {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.checkout-result__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.15rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f2f1;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.checkout-result__total strong {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.checkout-result__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.checkout-result__btn {
+  display: block;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.checkout-result__btn--primary {
+  color: #fff;
+  background: #111;
+}
+
+.checkout-result__btn--primary:hover {
+  background: #333;
+}
+
+.checkout-result__btn--outline {
+  color: #111;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+}
+
+.checkout-result__btn--outline:hover {
+  border-color: #d1d5db;
+  background: #fafafa;
+}
+
+.checkout-result__btn--secondary {
+  color: #111;
+  background: #fff;
+  border: 1px solid #111;
+}
+
+.checkout-result__btn--secondary:hover {
+  background: #f3f4f6;
+}
+
+@media (max-width: 420px) {
+  .checkout-result__meta {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 주문 내역 `/orders`·상세 `/orders/:orderId` — 캡처 UI(탭·카드·라인아이템) */
+.order-history {
+  min-height: 100vh;
+  background: #f3f4f6;
+}
+
+.order-history__main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.25rem 3.5rem;
+}
+
+.order-history__main--narrow {
+  max-width: 640px;
+}
+
+.order-history__toolbar {
+  padding: 0.6rem 0 0.25rem;
+}
+
+.order-history__back {
+  display: inline-block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #4b5563;
+  text-decoration: none;
+}
+
+.order-history__back:hover {
+  color: #111;
+}
+
+/* 주문 내역 → 메인 쇼핑 유도 (`/` `Home`) */
+.order-history__shop-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  background: #111;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.order-history__shop-cta:hover {
+  opacity: 0.92;
+}
+
+.order-history__shop-cta--block {
+  margin-top: 0.75rem;
+}
+
+.order-history__empty-block {
+  text-align: center;
+}
+
+.order-history__empty-block .order-history__empty {
+  padding: 1.25rem 0 0;
+}
+
+.order-history__page-title {
+  margin: 0 0 1.25rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #111;
+  text-align: center;
+}
+
+.order-history__page-title--left {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.order-history__tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 0 1.5rem;
+  padding: 0.2rem;
+  background: #e5e7eb;
+  border-radius: 10px;
+  gap: 0.2rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+/* 진행 상태 탭 8개 — 한 줄 가로 스크롤 */
+.order-history__tabs--scroll {
+  align-items: stretch;
+}
+
+.order-history__tab {
+  flex: 0 0 auto;
+  padding: 0.5rem 0.45rem;
+  border: none;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #6b7280;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1.25;
+  min-width: 0;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.order-history__tab-count {
+  font-weight: 700;
+  opacity: 0.88;
+}
+
+.order-history__tab--active .order-history__tab-count {
+  color: #6b7280;
+}
+
+.order-history__tab:hover {
+  color: #111;
+}
+
+.order-history__tab--active {
+  background: #fff;
+  color: #111;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.order-history__hint,
+.order-history__empty {
+  margin: 0;
+  padding: 2.5rem 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+.order-history__error {
+  margin: 0 0 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  font-size: 0.9rem;
+}
+
+.order-history__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.order-history__card {
+  padding: 1.25rem 1.2rem 1.1rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.order-history__card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.order-history__card-head-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.order-history__clock {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: #9ca3af;
+}
+
+.order-history__order-id {
+  margin: 0 0 0.25rem;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.order-history__order-date {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.order-history__card-head-right {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.order-history__badge {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.order-history__badge--processing {
+  color: #854d0e;
+  background: #fef9c3;
+}
+
+.order-history__badge--shipping {
+  color: #1e40af;
+  background: #dbeafe;
+}
+
+.order-history__badge--done {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.order-history__badge--cancelled {
+  color: #6b7280;
+  background: #f3f4f6;
+}
+
+.order-history__badge--pending-pay {
+  color: #9a3412;
+  background: #ffedd5;
+}
+
+.order-history__card-total {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #111;
+  letter-spacing: -0.02em;
+}
+
+.order-history__lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-history__line {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+}
+
+.order-history__thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.order-history__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.order-history__thumb span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 0.58rem;
+  color: #9ca3af;
+  text-align: center;
+  padding: 0.2rem;
+}
+
+.order-history__line-body {
+  min-width: 0;
+}
+
+.order-history__line-name {
+  margin: 0 0 0.25rem;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.order-history__line-meta {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+.order-history__line-price {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.order-history__footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.order-history__footer-msg {
+  margin: 0 0 0.85rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+.order-history__detail-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #374151;
+  background: #fff;
+  text-decoration: none;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+
+.order-history__detail-btn:hover {
+  border-color: #111;
+  color: #111;
+}
